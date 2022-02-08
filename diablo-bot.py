@@ -4,7 +4,6 @@ import config
 import sched
 import time
 import re
-from config import replyHistory
 import sqlite3
 import random
 

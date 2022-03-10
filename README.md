@@ -38,7 +38,7 @@ Kind of posts(new, hot, etc) and number of posts on a subreddit can both be chan
 for post in sub.hot(limit=50):
 ```
 
-## Handling Complex Requests 🤔
+## Handling Complex Requests 💡
 Most of the requests in my current implementation are static. A key generates a response of a single string(question asked, and answered type of uses). If a request needs a more complex answer, it will be handled in a custom if/else statement.
 ```
 if k == 'complexKey':

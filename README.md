@@ -2,6 +2,7 @@
 Bot crawls a subreddit to serve requested data to users by parsing comments for keywords.
 
 ## Technology 👨‍💻
+
 -Python for general scripting
 -SQLite3 database stores comments that have been replied to, preventing duplicates
 -Python Reddit API Wrapper(PRAW) streamlines interacting with Reddit API

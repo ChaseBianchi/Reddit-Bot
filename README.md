@@ -38,7 +38,7 @@ Kind of posts(new, hot, etc) and number of posts on a subreddit can both be chan
 for post in sub.hot(limit=50):
 ```
 
-## Handling Complex Requests
+## Handling Complex Requests 🤔
 Most of the requests in my current implementation are static. A key generates a response of a single string(question asked, and answered type of uses). If a request needs a more complex answer, it will be handled in a custom if/else statement.
 ```
 if k == 'complexKey':
@@ -46,7 +46,7 @@ if k == 'complexKey':
   newMessage += complex_response
 ```
 
-## Error Handling
+## Error Handling 🚨
 When being rate limited, the error message is parsed for the timeout amount, and sleeps for that amount of time until executing next query.
 
 If an error besides rate limit is returned, it is stored in a counter. Reddit bot will idle for one minute before restarting.

@@ -10,6 +10,7 @@ Bot crawls a subreddit to serve requested data to users by parsing comments for 
 ## Config 🛠
 Reddit login credentials are stored in a seperate file, and pulled in like the example below. See [PRAW](https://praw.readthedocs.io/en/stable/) documentation for setting your credentials.
 ```
+import praw
 import config
 
 r = praw.Reddit(

@@ -23,11 +23,11 @@ def db_update_keywords(keywords, commentid):
 
 def parse_data(data): # returns dict with postid as keys
     parsed = {}
-    for tup in data:
-        if len(tup) == 3:
-            parsed[tup[0]] = {'author': tup[1], 'keywords': tup[2]}
+    for item in data:
+        if len(item) == 3:
+            parsed[item[0]] = {'author': item[1], 'keywords': item[2]}
         else:
-            print(f'error, db entry length item {tup}')
+            print(f'error, db entry length item {item}')
     return parsed
     
 
@@ -52,7 +52,7 @@ def run_bot():
         # 'fbr': 'Faster Block Rate frames can be found at https://diablo2.diablowiki.net/Breakpoints#Increased_Blocking_Speed \n\n Get fbr of a specific class, type !fbr[class] e.g. !fbrpaladin ',
         # 'fcr': 'Faster Cast Rate frames can be found at https://diablo2.diablowiki.net/Breakpoints#Faster_Cast_Rate \n\n Get fcr of a specific class, type !fcr[class] e.g. !fcrsorceress',
         'breakpoints': 'Breakpoints can be found at https://diablo2.diablowiki.net/Breakpoints \n\n For specific breakpoints by type and class use ![breakpoint][class] e.g. !fcrsorceress !fhrbarbarian !fbrpaladin',
-        'reset': 'Reset dates: \n\n D2R - early 2022 | PD2 - est. April | POD - who knows _(o.O)/ \n\n updated 2/2/2022',
+        'reset': 'Reset dates: \n\n D2R - April 28, 2022 | PD2 - 6-8 weeks after D2R reset | POD - who knows _(o.O)/ \n\n updated 2/2/2022',
         'fcrsorceress': 'Sorceress FCR breakpoints, shown as fcr(frames) \n\n All other Spells - 0(13) 9(12) 20(11) 37(10) 63(9) 105(8) 200(7) \n\n Lightning/CL(teleport in PD2) - 0(19) 7(18) 15(17) 23(16) 35(15) 52(14) 78(13) 117(12) 194(11)',
         'fcramazon': 'Amazon FCR breakpoints, shown as fcr(frames) \n\n 0(19) 7(18) 14(17) 22(16) 32(15) 48(14) 68(13) 99(12) 152(11)',
         'fcrassassin': 'Assassin FCR breakpoints, shown as fcr(frames) \n\n 0(16) 8(15) 16(14) 27(13) 42(12) 65(11) 102(10) 174(9)',
@@ -79,7 +79,7 @@ def run_bot():
         'roll': '',
         'lvl17druid': "hey guys, i play a level 17 druid, new to pod. I was just in a act 2 game where my group was killing the tombs over and over again, i think the game name was tombs-03 or something like that. well I am disconnected right now and can't log in. How do i make sure I get in the next game? I think think the exp was good",
         'help': 'Stay awhile and listen... \n\n Available commands: !',
-        
+        'craftleague': ' Crafters Race League 10AM PST April 1 - April 22. \n\n * Magic, rare, crafted items only. \n * 200% experience in hell mode \n * Dclone and Rathma materials sold by vendors \n * No full rejuvs(smalls still drop) \n * Player 5 map drops \n\n https://www.reddit.com/r/ProjectDiablo2/comments/tp6mx8/crafted_rare_only_league_announced_for_april_1st/'
         }
     # build help command reply
     commands = []
@@ -110,7 +110,6 @@ def run_bot():
                             for k in foundKeys:
                                 if k not in dbData[comment.id]['keywords']:
                                     if k == 'charsi':
-                                        # print('Charsi gif')
                                         # comment.reply(praw.models.InlineGif('https://static.wikia.nocookie.net/diablo/images/8/8b/Charsi.gif/revision/latest/zoom-crop/width/360/height/360?cb=20080817212751', f"Best I can do is {random.randrange(1, 35001)} gold."))
                                         # newkeywords = dbData[comment.id]['keywords'] + ' charsi'
                                         # db_update_keywords(newkeywords, comment.id)
@@ -131,14 +130,13 @@ def run_bot():
                                         if len(foundKeys)>1:
                                             newMessage += ' ********** \n\n '
                             if len(newMessage) > 0:
-                                print('reply')
+                                newMessage += 'Comment !help to see all commands. Report bugs or send suggestions to /u/ChaseBianchi'
                                 comment.reply(newMessage)
                                 c.execute(f"UPDATE post SET keywords = '{' '.join(foundKeys)}' WHERE id = '{comment.id}'")
                         else:
                             newMessage = ''
                             for k in foundKeys:
                                 if k == 'charsi':
-                                    # print('charsi')
                                     # comment.reply(praw.models.InlineGif('https://static.wikia.nocookie.net/diablo/images/8/8b/Charsi.gif/revision/latest/zoom-crop/width/360/height/360?cb=20080817212751', f"Best I can do is {random.randrange(1, 35001)} gold."))
                                     # if len(foundKeys) == 1: 
                                     #     db_write(comment.id, comment.author, 'charsi')
@@ -160,6 +158,7 @@ def run_bot():
                                         newMessage += ' ********** \n\n '
                                 
                             if len(newMessage) > 0:   
+                                newMessage += 'Comment !help to see all commands. Report bugs or send suggestions to /u/ChaseBianchi'
                                 comment.reply(newMessage)
                                 db_write(comment.id, comment.author, ' '.join(foundKeys))
 

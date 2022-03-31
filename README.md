@@ -22,27 +22,27 @@ r = praw.Reddit(
     check_for_async=False,
 )
 ```
-
+***
 Set the subreddit you wish to use the bot with.
 ```
 sub = r.subreddit('projectdiablo2')
 ```
-
+***
 The variable **reply** holds key:value pairs that the bot will scan comments for the key, and reply with the value. 
 ```
  reply = {...}
 ```
-
+***
 A database is needed to ensure posts that have been seen and resolved are marked as such. Database can be configured here
 ```
 conn = sqlite3.connect('diablo.db') #input your database in place of diablo.db
 ```
-
+***
 Kind of posts(new, hot, etc) and number of posts on a subreddit can both be changed. Refer to [PRAW](https://praw.readthedocs.io/en/stable/).
 ```
 for post in sub.hot(limit=50):
 ```
-
+***
 Posts are handled first with `handle_post_body` followed by iterating over all the comments on each post with `handle_comment`
 ```
 def run_search(): #performs the search of posts and comments
